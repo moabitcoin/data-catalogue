@@ -1,0 +1,21 @@
+stages:
+  - test
+
+testSchemaComatibiityWithTag:
+  stage: test
+  image: "hseeberger/scala-sbt:8u212_1.2.8_2.13.0"
+  only:
+    - tags
+  script:
+    - apt-get install make
+    - make testLatestAgainstPreviousTag
+
+testSchemaCompatibiity:
+  stage: test
+  image: "hseeberger/scala-sbt:8u212_1.2.8_2.13.0"
+  except:
+    - master
+    - tags
+  script:
+    - apt-get install make
+    - make testCommitAgainstLatestTag

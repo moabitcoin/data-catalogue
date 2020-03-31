@@ -1,0 +1,3 @@
+[submodule "fleet/hardware"]
+	path = fleet/hardware
+	url = ssh://git@ssh.gitlab.mobilityservices.io:443/am/roam/perception/drive-data-configs.git

@@ -1,0 +1,51 @@
+{
+    "name": "annotation_data",
+    "type": "record",
+    "namespace": "dms.das.perception.drive.data",
+    "doc": "Annotation entry, A scene annotation is a group for any/all ML generated/human verified scene information, all tokens are string formatted as UUIDv4, all timestamps in us since epoch in utc",
+    "fields": [
+        {
+            "name": "annotation",
+            "type": {
+                "type": "array",
+                "items": {
+                    "name": "annotation_record",
+                    "type": "record",
+                    "fields": [
+                        {
+                            "name": "element_token",
+                            "type": "string",
+                            "doc": "Unique identifier for the element paired with data (UUID)"
+                        },
+                        {
+                            "name": "annotation_token",
+                            "type": "string",
+                            "doc": "Unique identifier for this annotation (UUID)"
+                        },
+                        {
+                            "name": "data_token",
+                            "type": "string",
+                            "doc": "Unique identifier for the annotation paired with data (UUID)"
+                        },
+                        {
+                            "name": "sensor_data_tokens",
+                            "type": {
+                                "type": "array",
+                                "items": "string"
+                            },
+                            "doc": "Tokens for sensor data for which we have generated/available annotation(s) (UUIDs)"
+                        },
+                        {
+                            "name": "sensor_annotation_tokens",
+                            "type": {
+                                "type": "array",
+                                "items": "string"
+                            },
+                            "doc": "Tokens for sensor data annotation(s) (UUIDs)"
+                        }
+                    ]
+                }
+            }
+        }
+    ]
+}

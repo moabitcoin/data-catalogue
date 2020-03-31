@@ -1,0 +1,72 @@
+{
+    "name": "element_data",
+    "type": "record",
+    "namespace": "dms.das.perception.drive.data",
+    "doc": "Element entry, A scene element is an atomic representation for the state of the vehicle/world as observed by the sensor suite, all tokens are string formatted as UUIDv4,all timestamps in us since epoch in utc",
+    "fields": [
+        {
+            "name": "element",
+            "type": {
+                "type": "array",
+                "items": {
+                    "name": "element_record",
+                    "type": "record",
+                    "fields": [
+                        {
+                            "name": "sequence_token",
+                            "type": "string",
+                            "doc": "Unique identifier for this entry"
+                        },
+                        {
+                            "name": "sync",
+                            "type": "boolean",
+                            "doc": "Synchronised element"
+                        },
+                        {
+                            "name": "element_token",
+                            "type": "string",
+                            "doc": "Unique identifier for this entry"
+                        },
+                        {
+                            "name": "autonomy_token",
+                            "type": "string",
+                            "doc": "unique autonomy token"
+                        },
+                        {
+                            "name": "autonomous_engaged",
+                            "type": "boolean",
+                            "doc": "the vehicle is being driven with autonomy or human driver"
+                        },
+                        {
+                            "name": "annotation_token",
+                            "type": "string",
+                            "doc": "unique annotation token"
+                        },
+                        {
+                            "name": "data_token",
+                            "type": "string",
+                            "doc": "unique data token"
+                        },
+                        {
+                            "name": "timestamp",
+                            "type": "long",
+                            "doc": "Time stamp of this element entry"
+                        },
+                        {
+                            "name": "element_location",
+                            "type": [
+                                "null",
+                                {
+                                    "type": "array",
+                                    "items": "double"
+                                }
+                            ],
+                            "default": null,
+                            "doc": "Postprocessed position of this element"
+                        }
+                    ]
+                }
+            }
+        }
+    ]
+}

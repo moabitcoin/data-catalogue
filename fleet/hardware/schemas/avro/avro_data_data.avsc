@@ -1,0 +1,83 @@
+{
+    "name": "data_data",
+    "type": "record",
+    "doc": "Data element, collects sensor data fo one single point in time, all tokens are string formatted as UUIDv4, all timestamps in us since epoch in utc",
+    "namespace": "dms.das.perception.drive.data",
+    "fields": [
+        {
+            "name": "data",
+            "type": {
+                "type": "array",
+                "items": {
+                    "name": "data_record",
+                    "type": "record",
+                    "fields": [
+                        {
+                            "name": "data_token",
+                            "type": "string",
+                            "doc": "Unique identifier of this data element"
+                        },
+                        {
+                            "name": "timestamp",
+                            "type": "long",
+                            "doc": "Microsecond time stamp data is related to"
+                        },
+                        {
+                            "name": "element_token",
+                            "type": "string",
+                            "doc": "Unique element token to which this data is associated with"
+                        },
+                        {
+                            "name": "data_blob",
+                            "type": "string",
+                            "doc": "Path/uri to raw data blob on disk or S3"
+                        },
+                        {
+                            "name": "data_format",
+                            "type": "string",
+                            "doc": "Format version for the IO API to read/write data_blob"
+                        },
+                        {
+                            "name": "data_loc",
+                            "type": [
+                                "null",
+                                {
+                                    "type": "array",
+                                    "items": "double"
+                                }
+                            ],
+                            "default": null,
+                            "doc": "geo location (gnss_loc) of the data element, populated in post-processing"
+                        },
+                        {
+                            "name": "sensor_tokens",
+                            "type": {
+                                "type": "array",
+                                "items": "string"
+                            },
+                            "doc": "Array of identifiers of related sensor_data entries."
+                        },
+                        {
+                            "name": "osm_feature_id",
+                            "type": [
+                                "null",
+                                "string"
+                            ],
+                            "default": null,
+                            "doc": "OpenStreetMap road ID, Map matched, added in posprocessing, null if not available"
+                        },
+                        {
+                            "name": "hdmap_feature_id",
+                            "type": [
+                                "null",
+                                "string"
+                            ],
+                            "default": null,
+                            "doc": "HDMap lane ID, Map Matched, added in posprocessing, null if not available"
+                        }
+                    ]
+                }
+            }
+        }
+    ]
+}

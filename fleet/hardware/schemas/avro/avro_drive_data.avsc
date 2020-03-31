@@ -1,0 +1,67 @@
+{
+    "name": "drive_data",
+    "type": "record",
+    "namespace": "dms.das.perception.drive.data",
+    "fields": [
+        {
+            "name": "drive",
+            "type": {
+                "type": "array",
+                "items": {
+                    "name": "drive_record",
+                    "type": "record",
+                    "fields": [
+                        {
+                            "name": "diary_token",
+                            "type": "string"
+                        },
+                        {
+                            "name": "drive_token",
+                            "type": "string"
+                        },
+                        {
+                            "name": "drive_locations",
+                            "type": {
+                                "type": "array",
+                                "items": {
+                                    "type": "array",
+                                    "items": "double"
+                                }
+                            }
+                        },
+                        {
+                            "name": "drive_count",
+                            "type": "int"
+                        },
+                        {
+                            "name": "timestamp_start",
+                            "type": "long"
+                        },
+                        {
+                            "name": "timestamp_stop",
+                            "type": "long"
+                        },
+                        {
+                            "name": "sequence_tokens",
+                            "type": {
+                                "type": "array",
+                                "items": "string"
+                            }
+                        },
+                        {
+                            "name": "is_mapping",
+                            "type": "boolean"
+                        },
+                        {
+                            "name": "route_tokens",
+                            "type": {
+                                "type": "array",
+                                "items": "string"
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    ]
+}

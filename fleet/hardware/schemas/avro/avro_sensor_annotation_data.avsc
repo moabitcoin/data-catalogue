@@ -1,0 +1,182 @@
+{
+    "name": "sensor_annotation_data",
+    "type": "record",
+    "namespace": "dms.das.perception.drive.data",
+    "doc": "A sensor annotation entry is a sensor data annotation for each sensor modality type for any/all ML generated/human verified scene information, all tokens are string formatted as UUIDv4, all timestamps in us since epoch in utc",
+    "fields": [
+        {
+            "name": "sensor_annotation",
+            "type": {
+                "type": "array",
+                "items": {
+                    "name": "sensor_annotation_record",
+                    "type": "record",
+                    "fields": [
+                        {
+                            "name": "sensor_annotation_token",
+                            "type": "string",
+                            "doc": "Unique identifier for the element paired with data (UUID)"
+                        },
+                        {
+                            "name": "sensor_data_token",
+                            "type": "string",
+                            "doc": "Unique identifier for this annotation (UUID)"
+                        },
+                        {
+                            "name": "annotation_token",
+                            "type": "string",
+                            "doc": "Unique identifier for the annotation paired with data (UUID)"
+                        },
+                        {
+                            "name": "timestamp",
+                            "type": "long",
+                            "doc": "Time stamp (in us) at which this annotation was generated"
+                        },
+                        {
+                            "name": "annotator_id",
+                            "type": {
+                                "type": "array",
+                                "items": "string"
+                            },
+                            "doc": "Information pertaining to the annotator, <model_name>:<md5sum> of the model(s) if machine generated"
+                        },
+                        {
+                            "name": "annotation_verified",
+                            "type": "boolean",
+                            "doc": "if the annotation is verified by HIL (Human In the Loop)"
+                        },
+                        {
+                            "name": "annotation_type",
+                            "type": "string",
+                            "doc": "Type of annotation : global, aa_bounding_box_2d, oo_bounding_box_3d, semseg_mask etc"
+                        },
+                        {
+                            "name": "annotation_resource_global",
+                            "default": null,
+                            "type": [
+                                "null",
+                                {
+                                    "type": "array",
+                                    "items": {
+                                        "name": "annotation_resource_global_record",
+                                        "type": "record",
+                                        "fields": [
+                                            {
+                                                "name": "score",
+                                                "type": "double"
+                                            },
+                                            {
+                                                "name": "class",
+                                                "type": "string"
+                                            }
+                                        ]
+                                    }
+                                }
+                            ],
+                            "doc": "Image classification tag and score"
+                        },
+                        {
+                            "name": "annotation_resource_2d_bbox",
+                            "default": null,
+                            "type": [
+                                "null",
+                                {
+                                    "type": "array",
+                                    "items": {
+                                        "name": "annotation_resource_2d_record",
+                                        "type": "record",
+                                        "fields": [
+                                            {
+                                                "name": "xmin",
+                                                "type": "double"
+                                            },
+                                            {
+                                                "name": "ymin",
+                                                "type": "double"
+                                            },
+                                            {
+                                                "name": "xmax",
+                                                "type": "double"
+                                            },
+                                            {
+                                                "name": "ymax",
+                                                "type": "double"
+                                            },
+                                            {
+                                                "name": "score",
+                                                "type": "double"
+                                            },
+                                            {
+                                                "name": "class",
+                                                "type": "string"
+                                            }
+                                        ]
+                                    }
+                                }
+                            ],
+                            "doc": "Array of co-ordinates for detection BBOX(2D)"
+                        },
+                        {
+                            "name": "annotation_resource_3d_bbox",
+                            "default": null,
+                            "type": [
+                                "null",
+                                {
+                                    "type": "array",
+                                    "items": {
+                                        "name": "annotation_resource_3d_record",
+                                        "type": "record",
+                                        "fields": [
+                                            {
+                                                "name": "xmin",
+                                                "type": "double"
+                                            },
+                                            {
+                                                "name": "ymin",
+                                                "type": "double"
+                                            },
+                                            {
+                                                "name": "zmin",
+                                                "type": "double"
+                                            },
+                                            {
+                                                "name": "xmax",
+                                                "type": "double"
+                                            },
+                                            {
+                                                "name": "ymax",
+                                                "type": "double"
+                                            },
+                                            {
+                                                "name": "zmax",
+                                                "type": "double"
+                                            },
+                                            {
+                                                "name": "score",
+                                                "type": "double"
+                                            },
+                                            {
+                                                "name": "class",
+                                                "type": "string"
+                                            }
+                                        ]
+                                    }
+                                }
+                            ],
+                            "doc": "Array of co-ordinates for detection BBOX(3D)"
+                        },
+                        {
+                            "name": "annotation_resource_semseg_mask",
+                            "type": [
+                                "null",
+                                "string"
+                            ],
+                            "default": null,
+                            "doc": "Path to S3 / Url where segseg mask image is stored"
+                        }
+                    ]
+                }
+            }
+        }
+    ]
+}

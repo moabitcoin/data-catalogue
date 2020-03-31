@@ -1,0 +1,294 @@
+{
+    "name": "sensor_data_data",
+    "type": "record",
+    "namespace": "dms.das.perception.drive.data",
+    "doc": "Schema for single sensor data frame Version 0.1, all tokens are string formatted as UUIDv4, all timestamps in us since epoch in utc",
+    "fields": [
+        {
+            "name": "sensor_data",
+            "type": {
+                "type": "array",
+                "items": {
+                    "name": "sensor_data_record",
+                    "type": "record",
+                    "fields": [
+                        {
+                            "name": "sensor_token",
+                            "type": "string",
+                            "doc": "unique identifier of this data point"
+                        },
+                        {
+                            "name": "data_token",
+                            "type": "string",
+                            "doc": "relation to parent data"
+                        },
+                        {
+                            "name": "data_timestamp",
+                            "type": "long",
+                            "doc": "timestamp of the parent data"
+                        },
+                        {
+                            "name": "sensor_modality_type",
+                            "type": "string",
+                            "doc": "Sensor Type, currently supported: camera, imu, gnss, vehicle"
+                        },
+                        {
+                            "name": "sensor_sampling_frequency",
+                            "type": "double",
+                            "doc": "Sampling frequency in Hz of the sensor"
+                        },
+                        {
+                            "name": "sensor_vendor_info",
+                            "type": "string",
+                            "doc": "Manufacturer and type of the sensor"
+                        },
+                        {
+                            "name": "sensor_hw_uuid",
+                            "type": "string",
+                            "doc": "Sensor uuid, stored in the data recorder config for a specifc sensor"
+                        },
+                        {
+                            "name": "sensor_available",
+                            "type": "boolean",
+                            "doc": "Indicates if the sensor is able to deliver valid data when the frame was recorded"
+                        },
+                        {
+                            "name": "cam_codec",
+                            "type": [
+                                "null",
+                                "string"
+                            ],
+                            "default": null,
+                            "doc": "Defines the video codec format currently  supported raw or h264"
+                        },
+                        {
+                            "name": "cam_is_resized",
+                            "type": ["null", "boolean"],
+                            "default": null,
+                            "doc": "True if image/video was resized by recording software or in post processing"
+                        },
+                        {
+                            "name": "cam_im_height",
+                            "type": [
+                                "null",
+                                "int"
+                            ],
+                            "default": null,
+                            "doc": "Image height in pixel, reflects the current state if resized"
+                        },
+                        {
+                            "name": "cam_im_width",
+                            "type": [
+                                "null",
+                                "int"
+                            ],
+                            "default": null,
+                            "doc": "Image width in pixel, reflects the current state if resized"
+                        },
+                        {
+                            "name": "bsens_seq_filename",
+                            "type": [
+                                "null",
+                                "string"
+                            ],
+                            "default": null,
+                            "doc": "Sensor data file for the current sequence, content depends on the sensor type, for video cam_codec defines the format"
+                        },
+                        {
+                            "name": "bsens_seq_frame",
+                            "type": [
+                                "null",
+                                "int"
+                            ],
+                            "default": null,
+                            "doc": "Local Index of the sensor data frame within the bsens_seq_filename"
+                        },
+                        {
+                            "name": "cam_seq_number",
+                            "type": [
+                                "null",
+                                "long"
+                            ],
+                            "default": null,
+                            "doc": "Frame index since the beginning of the recording"
+                        },
+                        {
+                            "name": "cam_time_stamp",
+                            "type": [
+                                "null",
+                                "long"
+                            ],
+                            "default": null,
+                            "doc": "Camera based time stamp (us)"
+                        },
+                        {
+                            "name": "cam_exposure_time_us",
+                            "type": [
+                                "null",
+                                "int"
+                            ],
+                            "default": null,
+                            "doc": "Current exposure time in ms, in case of flir camera that might differ slightly as this is requested seperately from the frame"
+                        },
+                        {
+                            "name": "cam_gain_level_db",
+                            "type": [
+                                "null",
+                                "double"
+                            ],
+                            "default": null,
+                            "doc": "Current gain level in dB, in case of flir cameras might differ from frame as not avialble in frame and requested seperatelz"
+                        },
+                        {
+                            "name": "imu_acc",
+                            "type": [
+                                "null",
+                                {
+                                    "type": "array",
+                                    "items": "double"
+                                }
+                            ],
+                            "default": null,
+                            "doc": "3 Element Array XYZ refelecting the meassured acceleration in m/s2"
+                        },
+                        {
+                            "name": "imu_mag",
+                            "type": [
+                                "null",
+                                {
+                                    "type": "array",
+                                    "items": "double"
+                                }
+                            ],
+                            "default": null,
+                            "doc": "3 Element Array XYZ, reflecting magnetic field meassurement (unit gaus)"
+                        },
+                        {
+                            "name": "imu_gyro",
+                            "type": [
+                                "null",
+                                {
+                                    "type": "array",
+                                    "items": "double"
+                                }
+                            ],
+                            "default": null,
+                            "doc": "3 Element Array XYZ, reflecting gyro meassurement (unit dps)"
+                        },
+                        {
+                            "name": "imu_temp",
+                            "type": [
+                                "null",
+                                "double"
+                            ],
+                            "default": null,
+                            "doc": "Internal Temperature of the sensor (in C)"
+                        },
+                        {
+                            "name": "gnss_loc",
+                            "type": [
+                                "null",
+                                {
+                                    "type": "array",
+                                    "items": "double"
+                                }
+                            ],
+                            "default": null,
+                            "doc": "GNSS Location lat/lon"
+                        },
+                        {
+                            "name": "gnss_mode",
+                            "type": [
+                                "null",
+                                "string"
+                            ],
+                            "default": null,
+                            "doc": "GNSS Location mode: standard, DGPS, RTK"
+                        },
+                        {
+                            "name": "gnss_speed",
+                            "type": [
+                                "null",
+                                "double"
+                            ],
+                            "default": null,
+                            "doc": "GNSS speed in m/s"
+                        },
+                        {
+                            "name": "matched_gnss_token",
+                            "type": [
+                                "null",
+                                "string"
+                            ],
+                            "default": null,
+                            "doc": "Token referencing an eventual map-matched gnss data. UUIDv4"
+                        },
+                        {
+                            "name": "gnss_heading",
+                            "type": [
+                                "null",
+                                "double"
+                            ],
+                            "default": null,
+                            "doc": "GNSS heading in degrees"
+                        },
+                        {
+                            "name": "gnss_loc_error",
+                            "type": [
+                                "null",
+                                "double"
+                            ],
+                            "default": null,
+                            "doc": "GNSS Location uncertainity in meters"
+                        },
+                        {
+                            "name": "gnss_speed_error",
+                            "type": [
+                                "null",
+                                "double"
+                            ],
+                            "default": null,
+                            "doc": "GNSS speed uncertainity in m/s"
+                        },
+                        {
+                            "name": "gnss_heading_error",
+                            "type": [
+                                "null",
+                                "double"
+                            ],
+                            "default": null,
+                            "doc": "GNSS heading unceratinity in degree"
+                        },
+                        {
+                            "name": "vehicle_odometer",
+                            "type": [
+                                "null",
+                                "double"
+                            ],
+                            "default": null,
+                            "doc": "Vehicle odometer"
+                        },
+                        {
+                            "name": "vehicle_steering_angle",
+                            "type": [
+                                "null",
+                                "double"
+                            ],
+                            "default": null,
+                            "doc": "Vehicle steering angle"
+                        },
+                        {
+                            "name": "vehicle_speed",
+                            "type": [
+                                "null",
+                                "double"
+                            ],
+                            "default": null,
+                            "doc": "Speed computed from vehicle wheel ticks"
+                        }
+                    ]
+                }
+            }
+        }
+    ]
+}

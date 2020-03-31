@@ -1,0 +1,29 @@
+# All the paths below can local to your AWS / workstation or S3 paths
+# input image height
+im_height: 720
+# input image width
+im_width: 1280
+# input image channels
+im_channels: 3
+# Sample every 29th frame from videos for training data
+frame_sampling: 29
+# timestamp multiplier
+timestamp_multiplier: 1000
+# adding random noise to asyc [-timestamp_uncertainity, +timestamp_uncertainity]
+timestamp_uncertainity: [-100000, 100000]
+# chunk size of sequences
+chunk_size: 60
+# asynch sensor suite prefix
+async_sensor_prefix : ['camera', 'imu', 'gnss', 'vehicle']
+# split sensor data into len(async_split) and each element has async_split[idx] sensor synchronized
+# sum(async_split) has to be len(async_sensor_prefix)
+async_split: [1, 1, 2]
+# video file list
+vid_list: /nas/3rd_party/bdd/lists/vidlist-12-07-2019-100K-sample-100.txt
+# information meta-data file list
+info_list: /nas/3rd_party/bdd/lists/infolist-12-07-2019-100K-sample-100.txt
+# location where to store mocked data
+destination:
+    base_path: /data/datasets/bdd/bdd100k/mocked/14-06-2019-map_updates-10
+    tables: tables/{}.json
+    raw: raw/{}

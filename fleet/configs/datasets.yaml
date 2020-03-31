@@ -1,0 +1,12 @@
+Berkley Deep Drive 100K:
+  Institution: UCB
+  Name: BDD100K
+  Size: 100K
+  Type: Camera,GPS,Speed,Lanes
+  Location: https://bdd-data.berkeley.edu/portal.html#download
+MyTaxi Rides Data:
+  Institution: myTaxi
+  Name: myTaxi
+  Size: 1.4M
+  Type: GPS,TimeStamp,RideID
+  Location: s3://com.mytaxi.sophie.das.exchange/booking_location_das_2

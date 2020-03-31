@@ -1,0 +1,53 @@
+{
+    "name": "diary_data",
+    "type": "record",
+    "namespace": "dms.das.perception.drive.data",
+    "doc": "Diary entry, collects drives of one day, all tokens are string formatted as UUIDv4, all timestamps in us since epoch in utc",
+    "fields": [
+        {
+            "name": "diary",
+            "type": {
+                "type": "array",
+                "items": {
+                    "name": "diary_record",
+                    "type": "record",
+                    "fields": [
+                        {
+                            "name": "diary_token",
+                            "type": "string",
+                            "doc": "Unique identifier for this entry"
+                        },
+                        {
+                            "name": "vehicle_id",
+                            "type": "string",
+                            "doc": "VIN or Name of the vehicle"
+                        },
+                        {
+                            "name": "diary_date",
+                            "type": "string",
+                            "doc": "Date of recording DD:MM:YYYY"
+                        },
+                        {
+                            "name": "diary_log",
+                            "type": "string",
+                            "doc": "Location of log in local/S3"
+                        },
+                        {
+                            "name": "location",
+                            "type": "string",
+                            "doc": "City of operation"
+                        },
+                        {
+                            "name": "drive_tokens",
+                            "type": {
+                                "type": "array",
+                                "items": "string"
+                            },
+                            "doc": "Unique drive tokens in the diary"
+                        }
+                    ]
+                }
+            }
+        }
+    ]
+}

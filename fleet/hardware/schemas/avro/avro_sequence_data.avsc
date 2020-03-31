@@ -1,0 +1,72 @@
+{
+    "name": "sequence_data",
+    "type": "record",
+    "doc": "Sequence of element entries recorded within a time frame of max 60s, alligned to xx:xx:00 of UTC, all tokens are string formatted as UUIDv4, all timestamps in us since epoch in utc",
+    "namespace": "dms.das.perception.drive.data",
+    "fields": [
+        {
+            "name": "sequence",
+            "type": {
+                "type": "array",
+                "items": {
+                    "name": "sequence_record",
+                    "type": "record",
+                    "fields": [
+                        {
+                            "name": "sequence_token",
+                            "type": "string",
+                            "doc": "Unique identifier of this seqence"
+                        },
+                        {
+                            "name": "drive_token",
+                            "type": "string",
+                            "doc": "Token of related drive entry"
+                        },
+                        {
+                            "name": "timestamp_start",
+                            "type": "long",
+                            "doc": "Start time stamp of this 60s sequence"
+                        },
+                        {
+                            "name": "timestamp_stop",
+                            "type": "long",
+                            "doc": "Stop time stamp of this 60s sequence"
+                        },
+                        {
+                            "name": "sequence_loc_start",
+                            "type": [
+                                "null",
+                                {
+                                    "type": "array",
+                                    "items": "double"
+                                }
+                            ],
+                            "default": null,
+                            "doc": "Beginning geolocation (gnss_loc) of the sequece, populated in post processing"
+                        },
+                        {
+                            "name": "sequence_loc_stop",
+                            "type": [
+                                "null",
+                                {
+                                    "type": "array",
+                                    "items": "double"
+                                }
+                            ],
+                            "default": null,
+                            "doc": "Ending geolocation (gnss_loc) of the sequece, populated in post processing"
+                        },
+                        {
+                            "name": "element_tokens",
+                            "type": {
+                                "type": "array",
+                                "items": "string"
+                            },
+                            "doc": "Element tokens belonging to this sequence in ordered sequence"
+                        }
+                    ]
+                }
+            }
+        }
+    ]
+}

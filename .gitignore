@@ -1,0 +1,12 @@
+data/
+build/
+*.log
+*.pyc
+*__pycache__
+/dist/
+/*.egg-info
+.eggs/
+.vscode
+.DS*
+
+
